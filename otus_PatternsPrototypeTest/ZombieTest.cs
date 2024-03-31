@@ -13,7 +13,7 @@ namespace otus_PatternPrototypeTest
                 MonsterName = "Zombie",
                 AttackPower = 100,
                 Health = 400,
-                IsCanByUpgraded = true,
+                IsCanBeUpgraded = true,
                 Skill = new Skill() { SkillName = "Bite", Damage = 25 }
             };
 
@@ -22,7 +22,7 @@ namespace otus_PatternPrototypeTest
             Assert.AreEqual(zombie.MonsterName, zombieClone?.MonsterName, "MonsterName not Equal");
             Assert.AreEqual(zombie.AttackPower, zombieClone?.AttackPower, "AttackPower not Equal");
             Assert.AreEqual(zombie.Health, zombieClone?.Health, "Health not Equal");
-            Assert.AreEqual(zombie.IsCanByUpgraded, zombieClone?.IsCanByUpgraded, "IsCanByUpgraded not Equal");
+            Assert.AreEqual(zombie.IsCanBeUpgraded, zombieClone?.IsCanBeUpgraded, "IsCanByUpgraded not Equal");
             Assert.AreEqual(zombie.Skill.SkillName, zombieClone?.Skill?.SkillName, "SkillName not Equal");
             Assert.AreEqual(zombie.Skill.Damage, zombieClone?.Skill?.Damage, "Damage not Equal");
         }

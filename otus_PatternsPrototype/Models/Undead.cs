@@ -1,4 +1,5 @@
-﻿using System;
+﻿using otus_PatternsPrototype.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,13 @@ namespace otus_PatternsPrototype.Models
     /// <summary>
     /// Represents the class as a division of monsters that are related to the undead
     /// </summary>
-    public class Undead : MonsterBase, ICloneable
+    public class Undead : MonsterBase, ICloneable, IMyCloneable<Undead>
     {
 
         /// <summary>
         /// In our game, only undead can be upgraded
         /// </summary>
-        public bool IsCanByUpgraded { get; set; }
-
+        public bool IsCanBeUpgraded { get; set; }
 
         /// <summary>
         /// Creates a new UndeadClass that is a copy of the current instance.
@@ -24,14 +24,20 @@ namespace otus_PatternsPrototype.Models
         /// <returns>A new object that is a copy of this instance.</returns>
         public virtual object Clone()
         {
+            return MyClone();
+        }
+
+        public virtual Undead MyClone()
+        {
             return new Undead()
             {
                 AttackPower = AttackPower,
                 Health = Health,
                 MonsterName = MonsterName,
-                IsCanByUpgraded = IsCanByUpgraded
+                IsCanBeUpgraded = IsCanBeUpgraded
             };
         }
+
         public override void Attack()
         {
             Console.WriteLine("Monster attacks");

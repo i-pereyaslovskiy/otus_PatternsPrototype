@@ -13,12 +13,12 @@ namespace otus_PatternsPrototype.Models
     /// </summary>
     public class Skeleton : Undead, IMyCloneable<Skeleton>
     {
-        public Skill? Skill { get; set; } = null!;
+        public Skill? Skill { get; set; }
 
         public void UpgradeMonster()
         {
 
-            if (IsCanByUpgraded)
+            if (IsCanBeUpgraded)
             {
                 Console.WriteLine($"{MonsterName} was Upgraded");
                 Skill.SkillName = $"Strong{Skill.SkillName}";
@@ -30,15 +30,15 @@ namespace otus_PatternsPrototype.Models
                 Console.WriteLine($"{MonsterName} cannot be upgraded");
 
         }
-        public Skeleton MyClone()
+        public override Skeleton MyClone()
         {
             return new Skeleton
             {
                 AttackPower = AttackPower,
                 Health = Health,
                 MonsterName = MonsterName,
-                Skill = Skill,
-                IsCanByUpgraded = IsCanByUpgraded
+                IsCanBeUpgraded = IsCanBeUpgraded,
+                Skill = new Skill { Damage = Skill.Damage, SkillName = Skill.SkillName }
             };
         }
 
@@ -49,7 +49,7 @@ namespace otus_PatternsPrototype.Models
 
         public override string ToString()
         {
-            return $"{MonsterName}; Skill: '{Skill?.SkillName}'; Heath: '{Health}',  AttackPower:'{AttackPower}'";
+            return $"{MonsterName}; Skill: '{Skill?.SkillName}'; Health: '{Health}',  AttackPower:'{AttackPower}'";
         }
     }
 }

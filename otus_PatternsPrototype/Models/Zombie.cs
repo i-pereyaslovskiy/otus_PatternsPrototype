@@ -13,10 +13,10 @@ namespace otus_PatternsPrototype.Models
         /// The zombie class that we use in the game
         /// Based on Undead class and used IMyCloneable interface
         /// </summary>
-        public Skill? Skill { get; set; } = null!;
+        public Skill? Skill { get; set; }
         public void UpgradeMonster()
         {
-            if (IsCanByUpgraded)
+            if (IsCanBeUpgraded)
             {
                 Console.WriteLine($"{MonsterName} was Upgraded");
                 Skill.SkillName = $"Strong{Skill.SkillName}";
@@ -27,15 +27,15 @@ namespace otus_PatternsPrototype.Models
             else
                 Console.WriteLine($"{MonsterName} cannot be upgraded");
         }
-        public Zombie MyClone()
+        public override Zombie MyClone()
         {
             return new Zombie
             {
                 AttackPower = AttackPower,
                 Health = Health,
                 MonsterName = MonsterName,
-                Skill = Skill,
-                IsCanByUpgraded = IsCanByUpgraded
+                IsCanBeUpgraded = IsCanBeUpgraded,
+                Skill = new Skill { Damage = Skill.Damage, SkillName = Skill.SkillName}
             };
         }
         public override object Clone()
@@ -45,7 +45,7 @@ namespace otus_PatternsPrototype.Models
 
         public override string ToString()
         {
-            return $"{MonsterName}; Skill: '{Skill?.SkillName}'; Heath: '{Health}',  AttackPower:'{AttackPower}'";
+            return $"{MonsterName}; Skill: '{Skill?.SkillName}'; Health: '{Health}',  AttackPower:'{AttackPower}'";
         }
     }
 }
